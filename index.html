@@ -1,58 +1,160 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Confeitaria Olga</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="manifest.json">
-    <style>
-        body{
-            background:#0a0a0a;
-            color:#eee;
-            font-family:system-ui;
-            margin:0;
-            padding:30px;
-        }
-        .card{
-            background:#161616;
-            padding:20px;
-            border-radius:16px;
-            margin-bottom:20px;
-        }
-        button{
-            background:#f59e0b;
-            border:none;
-            padding:10px 16px;
-            border-radius:10px;
-            cursor:pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Confeitaria Olga</title>
+
+<style>
+body{
+font-family: Arial;
+background:#111;
+color:white;
+padding:20px;
+}
+
+.card{
+background:#1f1f1f;
+padding:20px;
+margin:15px 0;
+border-radius:10px;
+cursor:pointer;
+}
+
+input,button{
+padding:10px;
+margin:5px;
+border-radius:5px;
+border:none;
+}
+
+button{
+background:#ff9800;
+color:white;
+}
+</style>
+
 </head>
+
 <body>
 
 <h1>Confeitaria Olga</h1>
-<p>Sistema de Gestão da Confeitaria</p>
 
-<div class="card">
-    <h3>Produção do Dia</h3>
-    <p>Controle da produção da cozinha.</p>
+<div class="card" onclick="mostrar('producao')">
+Produção do Dia
 </div>
 
-<div class="card">
-    <h3>Estoque</h3>
-    <p>Controle de ingredientes e produtos.</p>
+<div class="card" onclick="mostrar('estoque')">
+Estoque
 </div>
 
-<div class="card">
-    <h3>Equipe</h3>
-    <p>Escalas de trabalho e limpeza.</p>
+<div class="card" onclick="mostrar('vendas')">
+Vendas
 </div>
 
-<div class="card">
-    <h3>Relatórios</h3>
-    <p>Relatórios diários com fotos.</p>
+<div id="producao" style="display:none">
+
+<h2>Produção</h2>
+
+<input id="produto" placeholder="Produto">
+<input id="quantidade" placeholder="Quantidade">
+
+<button onclick="salvarProducao()">Salvar</button>
+
+<ul id="listaProducao"></ul>
+
 </div>
+
+
+<div id="estoque" style="display:none">
+
+<h2>Estoque</h2>
+
+<input id="ingrediente" placeholder="Ingrediente">
+<input id="qtdEstoque" placeholder="Quantidade">
+
+<button onclick="salvarEstoque()">Salvar</button>
+
+<ul id="listaEstoque"></ul>
+
+</div>
+
+
+<div id="vendas" style="display:none">
+
+<h2>Vendas</h2>
+
+<input id="produtoVenda" placeholder="Produto">
+<input id="valorVenda" placeholder="Valor">
+
+<button onclick="salvarVenda()">Salvar</button>
+
+<ul id="listaVendas"></ul>
+
+</div>
+
+
+<script>
+
+function mostrar(secao){
+
+document.getElementById("producao").style.display="none"
+document.getElementById("estoque").style.display="none"
+document.getElementById("vendas").style.display="none"
+
+document.getElementById(secao).style.display="block"
+
+}
+
+
+function salvarProducao(){
+
+let produto=document.getElementById("produto").value
+let qtd=document.getElementById("quantidade").value
+
+let lista=document.getElementById("listaProducao")
+
+let item=document.createElement("li")
+
+item.innerText=produto+" - "+qtd
+
+lista.appendChild(item)
+
+}
+
+
+function salvarEstoque(){
+
+let ing=document.getElementById("ingrediente").value
+let qtd=document.getElementById("qtdEstoque").value
+
+let lista=document.getElementById("listaEstoque")
+
+let item=document.createElement("li")
+
+item.innerText=ing+" - "+qtd
+
+lista.appendChild(item)
+
+}
+
+
+function salvarVenda(){
+
+let prod=document.getElementById("produtoVenda").value
+let valor=document.getElementById("valorVenda").value
+
+let lista=document.getElementById("listaVendas")
+
+let item=document.createElement("li")
+
+item.innerText=prod+" - R$ "+valor
+
+lista.appendChild(item)
+
+}
+
+</script>
 
 </body>
 </html>
+
